@@ -39,10 +39,9 @@ export class HttpInterceptor implements BaseInterceptor {
           .pipe(
             map((response: HttpResponse<any>) => {
               if (response instanceof HttpResponse) {
-                if (response.body.hasOwnProperty('response')) {
-                  return response.body.response;
+                if (!response.body.hasOwnProperty('response')) {
+                  throw this.resolveErrors(response.body.error);
                 }
-                throw this.resolveErrors(response.body.error);
               }
               return response;
             })
