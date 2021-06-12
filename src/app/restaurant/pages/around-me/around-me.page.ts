@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {RestaurantService} from "../../services/restaurant.service";
+import {AppService} from "../../../core/services/app.service";
 
 @Component({
   selector: 'app-around-me',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AroundMePage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private appService: AppService,
+    private restaurantService: RestaurantService
+  ) { }
 
   ngOnInit() {
+    this.restaurantService.getClosestRestaurants({
+      limit:10
+    }).subscribe((data) => console.log(data), (error) => this.appService.displayErrors());
   }
 
 }

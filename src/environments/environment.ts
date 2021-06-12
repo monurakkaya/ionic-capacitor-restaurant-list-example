@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  endpoint: 'https://smarty.kerzz.com:4004/api'
+  endpoint: 'https://smarty.kerzz.com:4004/api',
+  apiKey: 'bW9jay04ODc3NTU2NjExMjEyNGZmZmZmZmJ2'
 };
 
 /*
