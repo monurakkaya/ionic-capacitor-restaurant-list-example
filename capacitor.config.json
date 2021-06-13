@@ -1,6 +1,6 @@
 {
-	"appId": "com.monurakkaya.restaurantexample",
-	"appName": "restaurant-list-example",
-	"webDir": "www",
-	"bundledWebRuntime": false
+  "appId": "com.monurakkaya.restaurantexample",
+  "appName": "restaurant-list-example",
+  "webDir": "www",
+  "bundledWebRuntime": false
 }

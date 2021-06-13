@@ -27,6 +27,8 @@ export class FeedItem {
     if (input.storeInfo) {
       this.storeInfo = new StoreInfo().prepare(input.storeInfo);
     }
+    //there is no info about kitchen type so:
+    this.text = this.text.substr(0, 10);
     return this;
   }
 }

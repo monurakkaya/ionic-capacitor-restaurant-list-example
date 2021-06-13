@@ -24,3 +24,31 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+@import "https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap";
+
+
+.font-size-x {
+  font-size: var(--font-size-x);
+}
+
+.font-size-2x {
+  font-size: var(--font-size-2x);
+}
+
+.font-size-3x {
+  font-size: var(--font-size-3x);
+}
+
+
+.opacity-50 {
+  opacity: 50%;
+}
+
+.font-weight-bold {
+  font-weight: 700;
+}
+
+.font-weight-semi-bold {
+  font-weight: 600;
+}

@@ -5,7 +5,6 @@ import { RestaurantRoutingModule } from './restaurant-routing.module';
 
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule,
     RestaurantRoutingModule

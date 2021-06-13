@@ -6,10 +6,12 @@ export class StoreInfo {
   userPoint: number;
   status: string;
   rate: number;
+  rateFormatted: string;
   minOrderPrice: number;
 
   geoLocation: GeoLocation;
   workingHours: WorkingHour[] = [];
+  workingHoursForToday: WorkingHour;
 
   prepare(input: any) {
     Object.assign(this, input);
@@ -20,7 +22,10 @@ export class StoreInfo {
 
     if (input.workingHours) {
       this.workingHours = input.workingHours.map(workingHour => new WorkingHour().prepare(workingHour));
+      this.workingHoursForToday = this.workingHours[0];
     }
+
+    this.rateFormatted = this.rate.toFixed(1);
     return this;
   }
 }

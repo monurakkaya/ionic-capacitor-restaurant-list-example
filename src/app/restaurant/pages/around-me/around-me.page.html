@@ -1,19 +1,99 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>around-me</ion-title>
+    <ion-buttons slot="start">
+      <ion-button color="dark">
+        <ion-icon name="icon-menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button color="dark">
+        <ion-icon name="icon-cart"></ion-icon>
+      </ion-button>
+      <ion-button color="dark">
+        <ion-icon name="icon-receipt"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="font-size-2x">Ana Sayfa</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let feedItem of feedItems">
-    <ion-img [src]="feedItem.image?.base64"></ion-img>
-    <ion-card-header>
-      <ion-card-subtitle>{{ feedItem.title }}</ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      <p>{{ feedItem.text }}</p>
-    </ion-card-content>
-  </ion-card>
+  <div class="ion-padding ion-margin-vertical">
+    <ion-item lines="none" class="searchbar">
+      <ion-icon name="icon-search" slot="start"></ion-icon>
+      <ion-input placeholder="Mekan Ara"></ion-input>
+      <ion-icon name="icon-filter" slot="end"></ion-icon>
+    </ion-item>
+  </div>
+  <div class="feed-list">
+    <h2 class="font-size-x feed-header ion-padding-horizontal"> Sonuçlar </h2>
+    <ion-card *ngFor="let feedItem of feedItems">
+      <ion-chip class="rating">
+        <ion-icon name="icon-star" color="light"></ion-icon>
+        <ion-label color="light">{{
+          feedItem.storeInfo.rateFormatted
+          }}</ion-label>
+      </ion-chip>
+      <ion-img [src]="feedItem.image?.base64"></ion-img>
+      <ion-card-content>
+        <h3>{{ feedItem.title }}</h3>
+        <p class="min-height-x">
+          <ion-text
+            class="font-size-x font-weight-semi-bold opacity-50"
+            color="dark"
+          >{{ feedItem.text }}</ion-text
+          >
+        </p>
+        <div class="feed-item-footer">
+          <ion-row class="ion-justify-content-end">
+            <ion-col size="7" class="ion-text-right">
+              <ion-text
+                class="font-size-x font-weight-semi-bold"
+                color="dark"
+              >
+                <ion-icon name="icon-basket"></ion-icon>
+                <span class="opacity-50">Min. Sipariş Tutarı :
+                  {{
+                  feedItem.storeInfo.minOrderPrice
+                    | currency: "TRY":"symbol":"0.0":"tr"
+                  }}
+                </span>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="5">
+              <ion-text class="font-size-x font-weight-semi-bold" color="dark"
+              >3km yakınında</ion-text
+              >
+            </ion-col>
+            <ion-col size="7" class="ion-text-right">
+              <ion-text
+                class="font-size-x font-weight-semi-bold"
+                [color]="
+                  feedItem.storeInfo.workingHoursForToday.closed
+                    ? 'danger'
+                    : 'success'
+                "
+              >
+                {{
+                feedItem.storeInfo.workingHoursForToday.closed
+                  ? "İşletme Kapalı"
+                  : "İşletme Açık"
+                }}
+              </ion-text>
+              <ion-text
+                class="font-size-x font-weight-bold opacity-50"
+                color="dark"
+              >{{ feedItem.storeInfo.workingHoursForToday.text }}</ion-text
+              >
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
 
   <ion-infinite-scroll (ionInfinite)="paginate($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>

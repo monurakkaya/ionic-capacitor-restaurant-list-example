@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {RestaurantService} from '../../services/restaurant.service';
 import {AppService} from '../../../core/services/app.service';
 import {Filter} from '../../models/filter';
 import {FeedItem} from '../../models/feed-item';
+import {IonVirtualScroll} from "@ionic/angular";
 
 @Component({
   selector: 'app-around-me',
@@ -30,7 +31,6 @@ export class AroundMePage implements OnInit {
     this.restaurantService.getClosestRestaurants(this.filter)
       .subscribe((data) => {
         this.feedItems = this.feedItems.concat(data);
-        console.log(this.feedItems);
         if (ev) {
           ev.target.complete();
           if (data.length === 0) {

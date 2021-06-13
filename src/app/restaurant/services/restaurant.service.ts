@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {ApiService} from '../../core/services/api.service';
+import {map} from "rxjs/operators";
+import {FeedItem} from "../models/feed-item";
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,9 @@ export class RestaurantService {
   ) { }
 
   getClosestRestaurants(params) {
-    return this.apiService.post('/mock/getFeed', params);
+    return this.apiService.post('/mock/getFeed', params)
+      .pipe(
+        map((response: any) => response.map(feedItem => new FeedItem().prepare(feedItem)))
+      )
   }
 }

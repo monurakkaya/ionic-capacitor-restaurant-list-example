@@ -4,6 +4,7 @@ export class Image {
   imageSize: string;
   base64: string;
   storeId: string;
+  visible = false;
 
   prepare(input: any) {
     Object.assign(this, input);
